@@ -53,6 +53,53 @@ The same environment used for builds can be used in CI/CD pipelines:
 
 Development environment (Linux) stays clean from Windows-specific build tools. No pollution, no conflicts.
 
+## ⚠️ WSL Architecture Clarification
+
+**Important: This guide requires a Windows machine with MSVC installed.**
+
+### What WSL Is Used For
+
+- **Editing:** Use your favorite Linux text editors (Neovim, Emacs, VS Code Remote)
+- **Scripting:** Run shell scripts, Git commands, and development utilities
+- **File Access:** Access Windows files via `/mnt/c/`
+
+### What WSL Is NOT Used For
+
+- **Compilation:** All building is done by native Windows MSVC compiler, NOT Linux GCC
+- **Cross-compilation:** This is NOT a cross-compile setup
+- **Linking:** All linking is done by Windows LINK.EXE, NOT Linux ld
+
+### The Build Process
+
+```
+┌─────────────────────────────────────────────────┐
+│ WSL (Linux)                                     │
+│ - Edit source code                              │
+│ - Run Git commands                              │
+│ - Execute PowerShell scripts via cmd.exe        │
+└─────────────────────────────────────────────────┘
+                     ↓
+┌─────────────────────────────────────────────────┐
+│ Windows Native (MSVC)                           │
+│ - Compile C++ code                              │
+│ - Link binaries                                 │
+│ - Generate .vst3 plugins                        │
+└─────────────────────────────────────────────────┘
+```
+
+### Who This Guide Will NOT Work For
+
+❌ **Pure Linux users (no Windows machine)** - You cannot build Windows VST3 plugins without Windows and MSVC  
+❌ **macOS-only developers** - Use Xcode on macOS instead  
+❌ **Those expecting Linux-native compilation** - MSVC is mandatory for JUCE 8 Windows builds
+
+### Who This Guide WILL Work For
+
+✅ **Windows users** who want a minimal build environment  
+✅ **WSL users on Windows** who prefer Linux tools for editing but need Windows builds  
+✅ **Developers** setting up CI/CD on Windows runners  
+✅ **Plugin developers** who want command-line workflows
+
 ## Quick Start
 
 ### Prerequisites
@@ -114,7 +161,7 @@ JUCE 8 + MSVC   →  Requires Windows + MSVC  ✓ (but how?)
 **Traditional Solution:** Install 20+ GB Visual Studio
 **This Guide:** Install 2-3 GB Build Tools only
 
-### Real-World Scenarios
+### 4 Real-World Scenarios
 
 | Scenario | Traditional Approach | This Guide |
 |----------|---------------------|------------|

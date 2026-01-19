@@ -142,6 +142,8 @@ Practices ini memastikan builds yang reliable dan reproducible.
 
 GitHub Actions is the recommended CI/CD platform for JUCE 8 VST3 projects:
 
+**Basic Build Workflow:**
+
 ```yaml
 name: Build VST3
 
@@ -158,7 +160,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSVC
-        uses: egor-tensin/vs setup@v4
+        uses: egor-tensin/vs-setup@v4
 
       - name: Configure CMake
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -167,12 +169,49 @@ jobs:
         run: cmake --build build --config Release --parallel
 ```
 
-This workflow runs on Windows runners with MSVC pre-installed. The build takes ~5-10 minutes. No additional configuration is required.
+**Release Workflow (Modern):**
+
+```yaml
+name: Release VST3
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup MSVC
+        uses: egor-tensin/vs-setup@v4
+
+      - name: Build Plugin
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release --parallel
+
+      - name: Package Artifacts
+        run: |
+          Compress-Archive -Path "build/VST3/*.vst3" -DestinationPath plugin-windows.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: plugin-windows.zip
+          generate_release_notes: true
+```
+
+These workflows run on Windows runners with MSVC pre-installed. Builds take ~5-10 minutes. The release workflow uses modern GitHub Actions (`softprops/action-gh-release@v2`) instead of deprecated `actions/create-release@v1` and `actions/upload-release-asset@v1`.
 
 ### Bahasa Indonesia
 
 GitHub Actions adalah platform CI/CD yang direkomendasikan untuk proyek JUCE 8 VST3:
 
+**Workflow Build Dasar:**
+
 ```yaml
 name: Build VST3
 
@@ -189,7 +228,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSVC
-        uses: egor-tensin/vs setup@v4
+        uses: egor-tensin/vs-setup@v4
 
       - name: Configure CMake
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -198,7 +237,42 @@ jobs:
         run: cmake --build build --config Release --parallel
 ```
 
-Workflow ini berjalan di Windows runners dengan MSVC pre-installed. Build memakan waktu ~5-10 menit. Tidak ada konfigurasi tambahan yang diperlukan.
+**Workflow Release (Modern):**
+
+```yaml
+name: Release VST3
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup MSVC
+        uses: egor-tensin/vs-setup@v4
+
+      - name: Build Plugin
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release --parallel
+
+      - name: Package Artifacts
+        run: |
+          Compress-Archive -Path "build/VST3/*.vst3" -DestinationPath plugin-windows.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: plugin-windows.zip
+          generate_release_notes: true
+```
+
+Workflow ini berjalan di Windows runners dengan MSVC pre-installed. Build memakan waktu ~5-10 menit. Workflow release menggunakan GitHub Actions modern (`softprops/action-gh-release@v2`) sebagai pengganti dari `actions/create-release@v1` dan `actions/upload-release-asset@v1` yang sudah deprecated.
 
 ---
 
