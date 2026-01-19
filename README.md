@@ -156,6 +156,7 @@ The full guide ([JUCE8_VST3_BUILD_GUIDE.md](JUCE8_VST3_BUILD_GUIDE.md)) contains
 - [Build Process](JUCE8_VST3_BUILD_GUIDE.md#build)
 - [Troubleshooting](JUCE8_VST3_BUILD_GUIDE.md#troubleshooting)
 - [CI/CD Integration](JUCE8_VST3_BUILD_GUIDE.md#cicd)
+- **[Best Practices](BEST_PRACTICES.md)** - Production tips & troubleshooting
 
 ## Requirements
 
