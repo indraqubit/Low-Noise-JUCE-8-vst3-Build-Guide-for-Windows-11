@@ -1,0 +1,26 @@
+## 🔴 CRITICAL BUG
+
+GitHub Actions workflow will FAIL due to typo in action identifier.
+
+### The Problem
+Current:
+```yaml
+uses: egor-tensin/vs setup@v4  ❌ TYPO (space in name)
+```
+
+Correct:
+```yaml
+uses: egor-tensin/vs-setup@v4  ✅ (hyphen, not space)
+```
+
+### Locations to Fix
+- [ ] BEST_PRACTICES.md line ~161 (English section)
+- [ ] BEST_PRACTICES.md line ~192 (Bahasa Indonesia section)
+
+### Impact
+- CI/CD will fail with 'Invalid action identifier' error
+- Users following the guide will get broken workflows
+- Must fix before publishing
+
+### Severity
+🔴 CRITICAL - Will break CI/CD if published
