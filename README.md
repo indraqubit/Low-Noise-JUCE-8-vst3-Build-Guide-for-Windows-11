@@ -218,4 +218,109 @@ Built with assistance from opencode AI Assistant.
 
 ---
 
+## 🇮🇩 Bahasa Indonesia
+
+Repository **Low-Noise-JUCE-8-vst3-Build-Guide-for-Windows-11** adalah panduan lengkap untuk membangun audio VST3 plugins menggunakan JUCE 8 di Windows 11 dengan environment yang minimal dan ringan.
+
+### 🎯 Tujuan Utama
+
+Menyediakan alternatif **ringan dan cepat** untuk membangun JUCE 8 VST3 di Windows tanpa menginstal Visual Studio Community yang besar (20-30 GB).
+
+### 📦 Isi Repository
+
+| File | Tujuan |
+|------|--------|
+| **README.md** | Pengenalan & quick start guide |
+| **JUCE8_VST3_BUILD_GUIDE.md** | Dokumentasi lengkap (1000+ baris) |
+| **build_juce8_vst3.ps1** | PowerShell script untuk build otomatis |
+| **install_vs_buildtools.bat** | Installer otomatis untuk VS Build Tools |
+| **CMakeLists.txt.example** | Template CMake siap produksi |
+| **juce8-windows-toolchain.cmake** | Konfigurasi CMake untuk JUCE 8 |
+| **CONTRIBUTING.md** | Panduan kontribusi |
+| **CHANGELOG.md** | Riwayat perubahan |
+
+### 🚀 Konsep Utama
+
+**Masalah yang Dipecahkan:**
+- JUCE 7 → Bisa menggunakan MinGW (cross-compile dari Linux) ✅
+- JUCE 8 → Hanya mendukung MSVC, **tidak ada MinGW** ❌
+- Solusi tradisional: Install Visual Studio penuh (20-30 GB) 💾
+
+**Solusi Repository:**
+Gunakan **VS Build Tools saja** (2-3 GB) tanpa IDE penuh:
+
+| Aspek | Visual Studio Full | VS Build Tools (Guide ini) |
+|-------|-------------------|---------------------------|
+| Ukuran Disk | 20-30 GB | 2-3 GB (**90% lebih kecil**) |
+| Waktu Install | 30-60 menit | 5-10 menit (**80% lebih cepat**) |
+| GUI/Noise | Banyak background process | CLI only, zero noise |
+| WSL Compatible | Tidak mudah | Yes ✅ |
+
+### 🛠️ Cara Kerja
+
+**1. install_vs_buildtools.bat**
+Script Windows batch untuk instalasi otomatis:
+- Download & install Visual Studio Build Tools 2022
+- Install MSVC compiler & Windows SDK
+
+**2. build_juce8_vst3.ps1**
+PowerShell script yang melakukan 4 langkah:
+```powershell
+[1/4] Inisialisasi VS Build Tools environment
+[2/4] Buat build directory
+[3/4] Configure dengan CMake
+[4/4] Build plugin
+```
+
+**3. CMake Toolchain** (juce8-windows-toolchain.cmake)
+Konfigurasi untuk membangun dengan MSVC + JUCE 8
+
+### ✨ Fitur Utama
+
+1. **Minimal Footprint** - Hanya 2-3 GB disk space
+2. **Command-Line Only** - Tidak ada GUI yang mengganggu
+3. **WSL Compatible** - Code di Linux, build di Windows
+4. **CI/CD Ready** - Sama dengan environment lokal
+5. **Production-Ready** - Output identik dengan VS builds
+6. **Well Documented** - 1000+ baris dokumentasi detail
+
+### 👥 Target Pengguna
+
+**Cocok untuk:**
+- Developers Linux/WSL yang ingin build plugin Windows
+- Plugin developers yang benci IDE berat
+- CI/CD engineers
+- Audio developers yang prefer minimal environment
+
+**Tidak cocok untuk:**
+- Pemula (mulai dari JUCE tutorials dulu)
+- macOS developers (pakai Xcode)
+- Yang butuh Visual Studio debugger
+
+### 🔗 Workflow Contoh
+
+```
+Linux (WSL)                Windows
+   ↓                          ↓
+Code di VS Code → /mnt/c/ → Build Tools
+   ↓                          ↓
+Plugin source           MSVC Compiler
+                            ↓
+                       VST3 Plugin
+                            ↓
+                      Output ke build/
+```
+
+### 📊 Perbandingan Sumber Daya
+
+| Aspek | VS Community | Build Tools + Guide |
+|-------|-------------|-------------------|
+| Memory usage (idle) | 2-4 GB | ~100 MB |
+| Background processes | Puluhan | Zero |
+| Setup time | 30-60 min | 5-10 min |
+| Workflow | Open IDE → wait | Run script |
+| CI/CD fit | Complex | Simple |
+
+---
+
 **Start building JUCE 8 VST3 plugins without the bloat.**
