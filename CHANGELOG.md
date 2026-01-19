@@ -29,9 +29,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Use case recommendations
   - Efficiency analysis
 
+- **NINJA.md** - Build system comparison guide:
+  - Ninja vs CMake+msbuild detailed comparison
+  - Build speed analysis (25-30% faster with Ninja)
+  - Installation options (manual, Chocolatey, WinGet)
+  - ROI and break-even analysis
+  - Integration examples with build scripts
+  - Workflow comparison (current vs Ninja)
+
 ### Updated
 
-- README.md - Added documentation index & links to new guides
+- README.md - Added documentation index & links to all new guides
 - CHANGELOG.md - Updated version history
 
 ### Documentation
@@ -41,7 +49,8 @@ Total documentation now includes:
 - Scenario walkthroughs (468 lines)
 - Stability analysis (420 lines)
 - Benefits comparison (223 lines)
-- **Total: 2000+ lines of comprehensive guides**
+- Ninja comparison (467 lines)
+- **Total: 2500+ lines of comprehensive guides**
 
 ---
 

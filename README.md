@@ -191,6 +191,7 @@ JUCE8_VST3_BUILD_GUIDE_WIN_11/
 ├── SCENARIO.md                    # 4 real-world usage scenarios
 ├── VOLATILITY.md                  # Stability analysis & production risks
 ├── BENEFITS.md                    # Feature comparison guide
+├── NINJA.md                       # Ninja build system comparison
 ├── BEST_PRACTICES.md              # Production guidelines
 ├── README.md                      # This file
 ├── CHANGELOG.md                   # Version history
@@ -217,6 +218,7 @@ The full guide ([JUCE8_VST3_BUILD_GUIDE.md](JUCE8_VST3_BUILD_GUIDE.md)) contains
 | **[SCENARIO.md](SCENARIO.md)** | 4 real-world scenarios (Indie Dev, WSL Dev, CI/CD Team, Quick Prototyping) |
 | **[BENEFITS.md](BENEFITS.md)** | Feature comparison (Traditional vs Low-Noise approach) |
 | **[VOLATILITY.md](VOLATILITY.md)** | Stability & production risk analysis (Pure Windows vs WSL) |
+| **[NINJA.md](NINJA.md)** | Build system comparison (CMake+msbuild vs Ninja+CMake, 25-30% faster) |
 | **[BEST_PRACTICES.md](BEST_PRACTICES.md)** | Production guidelines & troubleshooting |
 
 ## Requirements
