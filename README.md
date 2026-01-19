@@ -188,6 +188,10 @@ JUCE8_VST3_BUILD_GUIDE_WIN_11/
 ├── build_juce8_vst3.ps1           # One-click build script
 ├── CMakeLists.txt.example         # Production-ready template
 ├── juce8-windows-toolchain.cmake  # CMake toolchain
+├── SCENARIO.md                    # 4 real-world usage scenarios
+├── VOLATILITY.md                  # Stability analysis & production risks
+├── BENEFITS.md                    # Feature comparison guide
+├── BEST_PRACTICES.md              # Production guidelines
 ├── README.md                      # This file
 ├── CHANGELOG.md                   # Version history
 ├── LICENSE                        # MIT License
@@ -196,6 +200,8 @@ JUCE8_VST3_BUILD_GUIDE_WIN_11/
 
 ## Documentation
 
+### Core Guides
+
 The full guide ([JUCE8_VST3_BUILD_GUIDE.md](JUCE8_VST3_BUILD_GUIDE.md)) contains 1000+ lines covering:
 - [Architecture Overview](JUCE8_VST3_BUILD_GUIDE.md#architecture)
 - [Toolchain Configuration](JUCE8_VST3_BUILD_GUIDE.md#toolchain)
@@ -203,7 +209,15 @@ The full guide ([JUCE8_VST3_BUILD_GUIDE.md](JUCE8_VST3_BUILD_GUIDE.md)) contains
 - [Build Process](JUCE8_VST3_BUILD_GUIDE.md#build)
 - [Troubleshooting](JUCE8_VST3_BUILD_GUIDE.md#troubleshooting)
 - [CI/CD Integration](JUCE8_VST3_BUILD_GUIDE.md#cicd)
-- **[Best Practices](BEST_PRACTICES.md)** - Production tips & troubleshooting
+
+### Documentation by Use Case
+
+| Document | Purpose |
+|----------|---------|
+| **[SCENARIO.md](SCENARIO.md)** | 4 real-world scenarios (Indie Dev, WSL Dev, CI/CD Team, Quick Prototyping) |
+| **[BENEFITS.md](BENEFITS.md)** | Feature comparison (Traditional vs Low-Noise approach) |
+| **[VOLATILITY.md](VOLATILITY.md)** | Stability & production risk analysis (Pure Windows vs WSL) |
+| **[BEST_PRACTICES.md](BEST_PRACTICES.md)** | Production guidelines & troubleshooting |
 
 ## Requirements
 
