@@ -158,7 +158,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSVC
-        uses: egor-tensin/vs setup@v4
+        uses: egor-tensin/vs-setup@v4
 
       - name: Configure CMake
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -189,7 +189,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSVC
-        uses: egor-tensin/vs setup@v4
+        uses: egor-tensin/vs-setup@v4
 
       - name: Configure CMake
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release
