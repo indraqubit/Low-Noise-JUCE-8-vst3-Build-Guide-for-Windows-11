@@ -35,6 +35,8 @@ Code in your favorite Linux editor (Neovim, VS Code Remote, etc.) while building
 Linux (Coding)  →  /mnt/c/  →  Windows (Building)  →  .vst3
 ```
 
+> **⚠️ WSL is used for editing and scripting only.** All compilation and linking are performed by **Windows MSVC**, not Linux.
+
 ### 4. Production-Ready
 
 The same environment used for builds can be used in CI/CD pipelines:
@@ -60,7 +62,7 @@ Development environment (Linux) stays clean from Windows-specific build tools. N
 | Windows 11 | 22H2+ | Host OS |
 | Visual Studio Build Tools | 2022 | MSVC Compiler |
 | Windows 11 SDK | 10.0.22621.0 | Windows APIs |
-| CMake | 3.20+ | Build system |
+| CMake | 3.25+ | Build system |
 | JUCE | 8.x | Framework |
 
 ### Installation
@@ -147,10 +149,13 @@ JUCE8_VST3_BUILD_GUIDE_WIN_11/
 
 ## Documentation
 
-- **[Full Guide](JUCE8_VST3_BUILD_GUIDE.md)** - Complete walkthrough with architecture diagrams
-- **[Quick Start](README.md)** - Get up and running fast
-- **[Troubleshooting](JUCE8_VST3_BUILD_GUIDE.md#troubleshooting)** - Common issues and solutions
-- **[Contributing](CONTRIBUTING.md)** - How to help improve this project
+The full guide ([JUCE8_VST3_BUILD_GUIDE.md](JUCE8_VST3_BUILD_GUIDE.md)) contains 1000+ lines covering:
+- [Architecture Overview](JUCE8_VST3_BUILD_GUIDE.md#architecture)
+- [Toolchain Configuration](JUCE8_VST3_BUILD_GUIDE.md#toolchain)
+- [Installation Steps](JUCE8_VST3_BUILD_GUIDE.md#installation)
+- [Build Process](JUCE8_VST3_BUILD_GUIDE.md#build)
+- [Troubleshooting](JUCE8_VST3_BUILD_GUIDE.md#troubleshooting)
+- [CI/CD Integration](JUCE8_VST3_BUILD_GUIDE.md#cicd)
 
 ## Requirements
 
@@ -165,7 +170,7 @@ JUCE8_VST3_BUILD_GUIDE_WIN_11/
 - Windows 11 (64-bit)
 - Visual Studio Build Tools 2022
 - Windows 11 SDK
-- CMake 3.20+
+- CMake 3.25+
 - JUCE 8.x
 
 ## Comparison
@@ -198,9 +203,19 @@ This setup unlocks all JUCE 8 Windows features:
 
 - **Direct2D Renderer** - Hardware-accelerated graphics
 - **WebView Support** - Embed web-based UIs
-- **Modern C++20** - Latest language features
+- **Modern C++17** (C++20 optional) - Latest language features
 - **Windows 10/11 APIs** - Full platform access
 - **Optimized Builds** - LTCG, PGO ready
+
+## Debugging
+
+Debugging with this minimal environment requires additional setup:
+
+- **VS Code + C++ Extension** - Can debug MSVC binaries with `cppvsdbg` adapter
+- **WinDbg** - Microsoft's advanced debugger (command-line, powerful)
+- **Visual Studio IDE** - Optional: install separately if full debugger UI is needed
+
+This guide focuses on **build-only** scenarios. Debugging is intentionally out of scope to maintain the low-noise promise.
 
 ## Support
 
